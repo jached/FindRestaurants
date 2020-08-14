@@ -3,6 +3,8 @@ Find nearby restaurants (not serious)
 
 Function apps in Azure triggered by http requests
 
+User information is stored in Azure Cosmos DB (just wanted to try it)
+
 ## GetRestaurants function app
 Gets an Area object that contains radius set by user and coordinates of users position. This uses Google Places API to get nearby restaurants.
 
