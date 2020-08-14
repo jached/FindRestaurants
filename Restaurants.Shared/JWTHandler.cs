@@ -50,7 +50,7 @@ namespace Restaurants.Shared
 
         public (bool, string, string) CheckJWT(IHeaderDictionary headers)
         {
-            if (headers.TryGetValue("JWTToken", out var tokenArr))
+            if (!headers.TryGetValue("JWTToken", out var tokenArr))
                 return (false, null, null);
 
             if (tokenArr.Count > 0 && tokenArr[0] != null)
