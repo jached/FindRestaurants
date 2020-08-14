@@ -1,5 +1,4 @@
-﻿using System;
-namespace Restaurants.Shared.Models
+﻿namespace Restaurants.Shared.Models
 {
     public class Restaurant
     {

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Restaurants.Shared.Models;
+using Restaurants.Shared.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,7 @@ namespace Restaurants.Shared.Repositories
             DbSettings = dbSettings;
             Configuration = configuration;
             Logger = logger;
-            //CosmosClient = new CosmosClientBuilder(DbSettings.Value.EndPoint, Configuration["DbSettings:AuthKey"]).Build();
-            var key = "yCGSsNfBT6o0TBKpYSMKVm1xeCG1l5mEvuHeNr7vgPYAy9C2MiC7Ic2CfSzRXyuLSMrQQdkw5YtYHCAkR5Zvfw==";
-            CosmosClient = new CosmosClientBuilder(DbSettings.Value.EndPoint, key).Build();
+            CosmosClient = new CosmosClientBuilder(DbSettings.Value.EndPoint, Configuration["DbSettings:AuthKey"]).Build();
         }
 
         public async Task<Models.User> AddAccount(Models.User user)

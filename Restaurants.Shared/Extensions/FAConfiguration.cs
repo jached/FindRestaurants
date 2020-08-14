@@ -23,36 +23,28 @@ namespace Restaurants.Shared.Extensions
 
                 Configuration = confBuilder.Build();
 
-                // this is only used to be able to run in local dev
                 var isLocalDev = string.IsNullOrEmpty(Environment.GetEnvironmentVariable("WEBSITE_INSTANCE_ID"));
 
                 var (AppConfEndPoint, env, uaiClientId) = GetCoreConfig(isLocalDev);
 
-                // add 2 azure app conf resources to establish region crossover redundancy
-                //_ = confBuilder
-                //    .AddAzureAppConfiguration(options =>
-                //        options.Connect(new Uri(AppConfEndPoint), isLocalDev
-                //            ? new DefaultAzureCredential(new DefaultAzureCredentialOptions())
-                //            : (TokenCredential)new ManagedIdentityCredential(uaiClientId))
-                //        .Select(keyFilter: "General:*", labelFilter: env));
+               _ = confBuilder
+                   .AddAzureAppConfiguration(options =>
+                       options.Connect(new Uri(AppConfEndPoint), isLocalDev
+                           ? new DefaultAzureCredential(new DefaultAzureCredentialOptions())
+                           : (TokenCredential)new ManagedIdentityCredential(uaiClientId))
+                       .Select(keyFilter: "General:*", labelFilter: env));
 
-                // To be replaced with code above
-                _ = confBuilder.AddAzureAppConfiguration(options => options.Connect("Endpoint=https://restaurant-conf.azconfig.io;Id=5F3U-l9-s0:yA+E1OVww+R0HEtnR5ec;Secret=gB1cQ5vpb1xyMKan00Ml+mC4WUm7c1LMgwwXEULELj0=")
-                .Select(keyFilter: "General:*", labelFilter: env));
-                //------------------------
 
                 Configuration = confBuilder.Build();
 
-                //AzureServiceTokenProvider azureServiceTokenProvider = isLocalDev
-                //    ? new AzureServiceTokenProvider()
-                //    : new AzureServiceTokenProvider($"RunAs=App;AppId={uaiClientId}");
+                AzureServiceTokenProvider azureServiceTokenProvider = isLocalDev
+                    ? new AzureServiceTokenProvider()
+                    : new AzureServiceTokenProvider($"RunAs=App;AppId={uaiClientId}");
 
-                //var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
+                var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
 
-                //_ = confBuilder.AddAzureKeyVault(Configuration["General:KeyVaultUrl"], keyVaultClient, new DefaultKeyVaultSecretManager());
-                //Configuration = confBuilder.Build();
-
-                //confBuilder.AddAzureKeyVault()
+                _ = confBuilder.AddAzureKeyVault(Configuration["General:KeyVaultUrl"], keyVaultClient, new DefaultKeyVaultSecretManager());
+                Configuration = confBuilder.Build();
 
                 builder.Services.Replace(ServiceDescriptor.Singleton(typeof(IConfiguration), Configuration));
             }

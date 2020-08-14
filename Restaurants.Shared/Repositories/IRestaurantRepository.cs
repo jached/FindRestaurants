@@ -1,7 +1,5 @@
 ﻿using Restaurants.Shared.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Restaurants.Shared.Repositories

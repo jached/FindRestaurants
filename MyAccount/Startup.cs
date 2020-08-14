@@ -4,8 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using MyAccount.Services;
 using Restaurants.Shared;
 using Restaurants.Shared.Extensions;
-using Restaurants.Shared.Models;
 using Restaurants.Shared.Repositories;
+using Restaurants.Shared.Settings;
 
 [assembly: FunctionsStartup(typeof(MyAccount.Startup))]
 namespace MyAccount

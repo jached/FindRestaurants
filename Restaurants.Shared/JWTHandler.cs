@@ -3,12 +3,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Restaurants.Shared.Models;
+using Restaurants.Shared.Settings;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 
 namespace Restaurants.Shared
 {
@@ -103,8 +102,7 @@ namespace Restaurants.Shared
 
         private SigningCredentials GetSigningCredentials()
         {
-            //var SymmetricSecurityKey = new SymmetricSecurityKey(Convert.FromBase64String(Configuration["JWTSecurityKey"]));
-            var SymmetricSecurityKey = new SymmetricSecurityKey(Convert.FromBase64String("Tc46Yj0bfhCPWYxpyD5Mfmqh0GaRIrZvwiO8AhdoG0R6UpVdNmpOX8j2XHi1vU9gAaMwjotZIdGy2nqb7PgxnRbe0ihktTYU5Mfb9tZZAoJHuS4fSUY2Jyqg4IK0tHXoFgNJXo5y9fAC8gVKCcF4GvGDmnEXVp5R4uhqKI7lEiqa3vt08MciuCfdqn0itQNemrp0iqGvSNdgKu7FDZbrzURU5LtU7zhSGzbwczFW4sdg0xyhXXgtpAYBeYgiRBE7"));
+            var SymmetricSecurityKey = new SymmetricSecurityKey(Convert.FromBase64String(Configuration["JWTSecurityKey"]));
             return new SigningCredentials(SymmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
         }
     }

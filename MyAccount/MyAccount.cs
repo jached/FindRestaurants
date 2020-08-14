@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
@@ -10,9 +9,6 @@ using Newtonsoft.Json;
 using Restaurants.Shared.Models;
 using Restaurants.Shared;
 using MyAccount.Services;
-using Azure;
-using Azure.Core;
-using System.Text;
 
 namespace MyAccount
 {
@@ -29,7 +25,7 @@ namespace MyAccount
 
         [FunctionName("Login")]
         public async Task<HttpResponse> Login(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();

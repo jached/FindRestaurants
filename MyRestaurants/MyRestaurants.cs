@@ -7,11 +7,8 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Microsoft.VisualBasic.CompilerServices;
-using Restaurants.Shared.Extensions;
 using Restaurants.Shared.Models;
 using Restaurants.Shared;
-using System.Collections.Generic;
 using MyRestaurants.Services;
 
 namespace MyRestaurants
@@ -29,7 +26,7 @@ namespace MyRestaurants
 
         [FunctionName("GetMyRestaurants")]
         public async Task<IActionResult> GetMyRestaurants(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
             bool isAuthorized;

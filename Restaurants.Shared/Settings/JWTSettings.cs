@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
-namespace Restaurants.Shared.Models
+namespace Restaurants.Shared.Settings
 {
     public class JWTSettings
     {

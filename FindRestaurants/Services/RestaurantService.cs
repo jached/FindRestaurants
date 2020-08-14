@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -26,8 +25,7 @@ namespace FindRestaurants.Service
         public async Task<List<Restaurant>> GetNearbyRestaurants(Area area)
         {
             var httpClient = HttpClientFactory.CreateClient("FindRestaurantsSender");
-            //var key = Configuration["GoogleApiKey"];
-            var key = "AIzaSyD9HJFN5mL1VnFRTvJo-au6k3xiCI0gJlM";
+            var key = Configuration["GoogleApiKey"];
             var radius = area.Radius;
             var latitude = area.Position.Latitude;
             var longitude = area.Position.Longitude;
