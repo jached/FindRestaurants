@@ -1,9 +1,11 @@
 # FindRestaurants
-Find nearby restaurants (not serious)
+Find nearby restaurants.
 
 Function apps in Azure triggered by http requests
 
 User information is stored in Azure Cosmos DB (just wanted to try it)
+
+The FindRestaurantApp project is an Android application that uses these function apps to view nearby restaurants and saved restaurants
 
 ## GetRestaurants function app
 Gets an Area object that contains radius set by user and coordinates of users position. This uses Google Places API to get nearby restaurants.
